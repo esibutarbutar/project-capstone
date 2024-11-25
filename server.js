@@ -170,13 +170,7 @@ const stocks = [{
 
 app.use(express.json());
 
-const getFullImageUrl = (req, logo) => {
-    if (logo.startsWith('http')) {
-        return logo;
-    }
-    return `${ req.protocol }://${req.get('host')}/images/${logo}`;
-};
-
+const getFullImageUrl = (req, logo) => `${ req.protocol }://${req.get('host')}/images/${logo}`;
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.get('/stocks', (req, res) => {
