@@ -170,14 +170,7 @@ const stocks = [{
 
 app.use(express.json());
 
-const getFullImageUrl = (req, logo) => {
-    // Cek apakah logo sudah memiliki URL lengkap
-    if (logo.startsWith('http')) {
-        return logo; // Jika ya, kembalikan URL yang sudah ada
-    }
-    return `$ { req.protocol }://${req.get('host')}/images/${logo}`; // Jika tidak, tambahkan host dan protocol
-};
-
+const getFullImageUrl = (req, logo) => `${ req.protocol }://${req.get('host')}/images/${logo}`;
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.get('/stocks', (req, res) => {
